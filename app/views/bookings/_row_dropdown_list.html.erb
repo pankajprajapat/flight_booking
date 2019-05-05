@@ -1,0 +1,2 @@
+<%= label_tag :select_row_number %>
+<%= select_tag "booking[row_number]", options_for_select(@rows), prompt: "Please Select", onchange: "seat_row_change(this.value)" %>

@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery
   before_action :authenticate_user!
 
   def authenticate_admin!
     unless current_user.admin?
-      flash[:notice] = "You are not authorsied for this action!"
-      redirect_to authenticated_root_path
+      redirect_to authenticated_root_path, notice: 'You are not authorsied for this action!'  
     end
   end
 end

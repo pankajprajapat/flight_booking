@@ -1,0 +1,17 @@
+$('#booking_total_fare').val("<%= @seat_configuration.base_price %>");
+$('.row_number').html("<%=j render 'bookings/row_dropdown_list' %>");
+function seat_row_change(value) {
+  if (value) {
+    config_id = $('#booking_seat_configuration_id').val();
+    $.ajax({
+      type: 'GET',
+      url: '/seat_configurations/available_seats',
+      data: {
+        id: config_id,
+        row_number: value
+      }
+    })
+  } else {
+  	$('.seat_number').html("");
+  }
+}

@@ -11,6 +11,7 @@
             <li><%= link_to "Flight", flights_path %></li>
           <% else %>
           <% end %>
+          <li><%= link_to "Booking", bookings_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { no_turbolink: true } %></li>
         </ul>
       </nav>

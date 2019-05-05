@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  resources :flights
+  resources :bookings, only: :index
+  resources :flights do
+    resources :bookings
+  end
   resources :planes
-  resources :seat_configurations
+  resources :seat_configurations do
+    collection do
+      get :available_rows
+      get :available_seats
+    end
+  end
   resources :categories
   devise_for :users
   devise_scope :user do

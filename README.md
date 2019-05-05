@@ -5,20 +5,20 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Admin User
+admin@test.com / password
 
-* System dependencies
+* Normal User
+user1@test.com / password 
+user3@test.com / password 
+user2@test.com / password 
 
-* Configuration
+* Seat Category
+First Class
+Business class
+Economy class
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Plane
+Airbus A380
+Boeing 747
+Airbus A380

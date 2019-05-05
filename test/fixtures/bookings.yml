@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: bookings
+#
+#  id                    :bigint           not null, primary key
+#  user_id               :bigint
+#  flight_id             :bigint
+#  seat_configuration_id :bigint
+#  row_number            :integer
+#  seat_number           :integer
+#  pnr_number            :string
+#  total_fare            :float
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  flight: one
+  pnr_number: MyString
+  total_fare: 1.5
+
+two:
+  user: two
+  flight: two
+  pnr_number: MyString
+  total_fare: 1.5

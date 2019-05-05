@@ -1,6 +1,6 @@
 class SeatConfigurationsController < ApplicationController
-  before_action :authenticate_admin!
-  before_action :set_seat_configuration, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, except: [:available_rows, :available_seats]
+  before_action :set_seat_configuration, only: [:show, :edit, :update, :destroy, :available_rows, :available_seats]
   before_action :set_seat_category, only: [:new, :create, :edit, :update]
 
   # GET /seat_configurations
@@ -60,6 +60,22 @@ class SeatConfigurationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to seat_configurations_url, notice: 'Seat configuration was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def available_rows
+    @rows = Array(1..@seat_configuration.number_of_rows)
+    respond_to do |format|
+      format.js { render 'bookings/available_row_list' }
+    end
+  end
+
+  def available_seats
+    all_seats = Array(1..@seat_configuration.seats_in_row)
+    booked_seat = Booking.booked_seats(@seat_configuration.id, params[:row_number]).pluck(:seat_number)
+    @seats = all_seats - booked_seat
+    respond_to do |format|
+      format.js { render 'bookings/available_seat_list' }
     end
   end
 

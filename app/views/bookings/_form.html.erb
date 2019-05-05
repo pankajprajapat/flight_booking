@@ -1,0 +1,45 @@
+<% url = booking.new_record? ? flight_bookings_path(@flight) : flight_booking_path(@flight, booking) %>
+<%= form_with(model: booking, url: url, local: true) do |form| %>
+  <% if booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+    <%= form.hidden_field :flight_id, value: params[:flight_id] %>
+    <%= form.label :category %>
+    <%= form.select(:seat_configuration_id, options_for_select(@flight.seat_configurations.collect{ |c| [c.category.
+      name, c.id] }), { prompt: "Please select" }, :onchange => "seat_category_change(this.value)") %>
+  </div>
+
+  <div class="field row_number">
+    <% unless booking.new_record? %>
+      <%= form.label :select_row_number %>
+      <%= form.select :row_number, options_for_select(@rows), { prompt: "Please select" }, onchange: "seat_row_change(this.value)" %>
+    <% end %>
+  </div>
+
+  <div class="field seat_number">
+    <% unless booking.new_record? %>
+      <%= form.label :select_seat_number %>
+      <%= form.select :seat_number, options_for_select(@seats), prompt: "Please select" %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_fare %>
+    <%= form.text_field :total_fare, readonly: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

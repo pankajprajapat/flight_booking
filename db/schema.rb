@@ -10,15 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_04_093117) do
+ActiveRecord::Schema.define(version: 2019_05_05_113408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "flight_id"
+    t.bigint "seat_configuration_id"
+    t.integer "row_number"
+    t.integer "seat_number"
+    t.string "pnr_number"
+    t.float "total_fare"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flight_id"], name: "index_bookings_on_flight_id"
+    t.index ["seat_configuration_id"], name: "index_bookings_on_seat_configuration_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category_code"
   end
 
   create_table "flights", force: :cascade do |t|
@@ -62,6 +78,9 @@ ActiveRecord::Schema.define(version: 2019_05_04_093117) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "flights"
+  add_foreign_key "bookings", "seat_configurations"
+  add_foreign_key "bookings", "users"
   add_foreign_key "flights", "planes"
   add_foreign_key "seat_configurations", "categories"
   add_foreign_key "seat_configurations", "planes"
