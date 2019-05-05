@@ -1,0 +1,73 @@
+<%= form_with(model: plane, local: true) do |form| %>
+  <% if plane.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plane.errors.count, "error") %> prohibited this plane from being saved:</h2>
+
+      <ul>
+      <% plane.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plane_number %>
+    <%= form.text_field :plane_number %>
+  </div>
+
+  <% if plane.new_record? %>
+    <% @seat_catgories.each do |category| %>
+      <%= form.fields_for :seat_configurations do |seat_form| %>
+        <h2><%= "Category: #{category.name}" %></h2>
+        <hr>
+        <%= seat_form.hidden_field :category_id, value: category.id %>
+        
+        <div class="field">
+          <%= seat_form.label :seats_in_row %>
+          <%= seat_form.number_field :seats_in_row %>
+        </div>
+
+        <div class="field">
+          <%= seat_form.label :number_of_rows %>
+          <%= seat_form.number_field :number_of_rows %>
+        </div>
+
+        <div class="field">
+          <%= seat_form.label :base_price %>
+          <%= seat_form.number_field :base_price %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form.fields_for :seat_configurations do |seat_form| %>
+      <h2><%= "Category: #{seat_form.object.try(:category).try(:name)}" %></h2>
+      <hr>
+      <%= seat_form.hidden_field :category_id, value: seat_form.object.try(:category_id) %>
+      
+      <div class="field">
+        <%= seat_form.label :seats_in_row %>
+        <%= seat_form.number_field :seats_in_row %>
+      </div>
+
+      <div class="field">
+        <%= seat_form.label :number_of_rows %>
+        <%= seat_form.number_field :number_of_rows %>
+      </div>
+
+      <div class="field">
+        <%= seat_form.label :base_price %>
+        <%= seat_form.number_field :base_price %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

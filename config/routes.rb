@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :flights
+  resources :planes
+  resources :seat_configurations
+  resources :categories
   devise_for :users
   devise_scope :user do
     authenticated :user do

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Seat Configurations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plane</th>
+      <th>Category</th>
+      <th>Seats in row</th>
+      <th>Number of rows</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seat_configurations.each do |seat_configuration| %>
+      <tr>
+        <td><%= seat_configuration.plane %></td>
+        <td><%= seat_configuration.category %></td>
+        <td><%= seat_configuration.seats_in_row %></td>
+        <td><%= seat_configuration.number_of_rows %></td>
+        <td><%= link_to 'Show', seat_configuration %></td>
+        <td><%= link_to 'Edit', edit_seat_configuration_path(seat_configuration) %></td>
+        <td><%= link_to 'Destroy', seat_configuration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Seat Configuration', new_seat_configuration_path %>

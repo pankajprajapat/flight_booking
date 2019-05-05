@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: seat_configurations
+#
+#  id             :bigint           not null, primary key
+#  plane_id       :bigint
+#  category_id    :bigint
+#  seats_in_row   :integer
+#  number_of_rows :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plane: one
+  category: one
+  seats_in_row: 1
+  number_of_rows: 1
+
+two:
+  plane: two
+  category: two
+  seats_in_row: 1
+  number_of_rows: 1

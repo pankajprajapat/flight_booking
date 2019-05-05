@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plane:</strong>
+  <%= @seat_configuration.plane %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @seat_configuration.category %>
+</p>
+
+<p>
+  <strong>Seats in row:</strong>
+  <%= @seat_configuration.seats_in_row %>
+</p>
+
+<p>
+  <strong>Number of rows:</strong>
+  <%= @seat_configuration.number_of_rows %>
+</p>
+
+<%= link_to 'Edit', edit_seat_configuration_path(@seat_configuration) %> |
+<%= link_to 'Back', seat_configurations_path %>

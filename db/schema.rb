@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_04_060942) do
+ActiveRecord::Schema.define(version: 2019_05_04_093117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.bigint "plane_id"
+    t.string "origin"
+    t.string "destination"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plane_id"], name: "index_flights_on_plane_id"
+  end
+
+  create_table "planes", force: :cascade do |t|
+    t.string "name"
+    t.string "plane_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seat_configurations", force: :cascade do |t|
+    t.bigint "plane_id"
+    t.bigint "category_id"
+    t.integer "seats_in_row"
+    t.integer "number_of_rows"
+    t.integer "base_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_seat_configurations_on_category_id"
+    t.index ["plane_id"], name: "index_seat_configurations_on_plane_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +62,7 @@ ActiveRecord::Schema.define(version: 2019_05_04_060942) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "flights", "planes"
+  add_foreign_key "seat_configurations", "categories"
+  add_foreign_key "seat_configurations", "planes"
 end

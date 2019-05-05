@@ -65,3 +65,7 @@ gem 'mini_racer',  platforms: :ruby
 gem 'devise'
 gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
+
+group :development do
+  gem 'annotate'
+end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plane: one
+  origin: MyString
+  destination: MyString
+
+two:
+  plane: two
+  origin: MyString
+  destination: MyString
