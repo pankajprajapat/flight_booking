@@ -1,8 +1,10 @@
 admin_users = User.create(id: 1, email: "admin@test.com", password: "password", password_confirmation: "password", admin: true)
 
-test_users  = User.create([{email: "user1@test.com", password: "password", password_confirmation: "password"},
-                           {email: "user2@test.com", password: "password", password_confirmation: "password"},
-                           {email: "user3@test.com", password: "password", password_confirmation: "password"}])
+test_users  = User.create([
+  {id: 2, email: "user1@test.com", password: "password", password_confirmation: "password"},
+  {id: 3, email: "user2@test.com", password: "password", password_confirmation: "password"},
+  {id: 4, email: "user3@test.com", password: "password", password_confirmation: "password"}
+])
 
 categories = Category.create([{ id: 1, name: 'First Class', category_code: 'FC'}, { id: 2, name: 'Business class', category_code: 'BC'}, { id: 3, name: 'Economy class', category_code: 'EC'} ])
 
