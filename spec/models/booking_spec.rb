@@ -14,19 +14,8 @@
 #  updated_at            :datetime         not null
 #
 
-require 'test_helper'
+require 'rails_helper'
 
-class BookingTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  context 'validations' do
-     it { should validate_presence_of(:name) }
-     it { should allow_nil(:address) }
-   end
-
-   context 'associations' do
-     it { should belong_to(:industry) }
-     it { should have_many(:sub_sectors).dependent(:restrict_with_exception) }
-   end
+RSpec.describe Booking, type: :model do
+  let(:booking) { create(:booking) }
 end
